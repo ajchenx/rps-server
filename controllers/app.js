@@ -47,7 +47,7 @@ module.exports = function (req, res, config, next) {
      * @param {Object} config  the asset config that specifies the assets to load
      */
     function loadAsset(embeds, config) {
-        var i, types, type, files, file, location, value;
+        var i, j, types, type, files, file, location, value;
 
         if (!embeds || !config) {
             return;
@@ -66,8 +66,8 @@ module.exports = function (req, res, config, next) {
             }
 
             // load each asset to its specified location ("top" or "bottom")
-            for (i = 0; i < files.length; ++i) {
-                file = files[i];
+            for (j = 0; j < files.length; ++j) {
+                file = files[j];
                 location = file.location;
                 value = file.value;
 
