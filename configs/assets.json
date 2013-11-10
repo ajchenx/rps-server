@@ -3,6 +3,10 @@
         {
             "location": "top",
             "value": "http://fonts.googleapis.com/css?family=Roboto:400,100,300,500"
+        },
+        {
+            "location": "top",
+            "value": "css/app.css"
         }
     ],
     "js": [
