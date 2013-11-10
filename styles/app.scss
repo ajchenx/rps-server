@@ -1,15 +1,19 @@
 @import "imports/_normalize";
 @import "imports/_grid";
+@import "imports/skins";
+@import "imports/globals";
 
 body {
     color: #5f5f5f;
     font-family: 'Roboto', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
     font-size: 13px;
+    font-weight: normal;
     line-height: 1.25;
+    min-width: $width-content;
 }
 
 h1, h2, h3, h4, h5 {
-    font-weight: 100;
+    font-weight: 300;
 }
 
 /* transitions */
