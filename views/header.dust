@@ -4,8 +4,6 @@
     <meta charset='UTF-8' />
     <title>RPS</title>
 
-    <link rel='stylesheet' href='css/app.css' />
-
     {#embeds.top}
       {#css}{~n}<link rel='stylesheet' type='text/css' href='{.|s}'/>{/css}
       {#js}{~n}<script type='text/javascript' src='{.|s}'></script>{/js}
