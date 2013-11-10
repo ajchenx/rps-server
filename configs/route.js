@@ -23,6 +23,24 @@ var path = require('path'),
 module.exports = function (app) {
 
     /**
+     * Initializes the embeds on the response object so that they can be passsed
+     * to the views.
+     * @param {http.ServerResponse} res  the response object
+     */
+    function initializeEmbeds(res) {
+        res.locals.embeds = {
+            top: {
+                css: [],
+                js: []
+            },
+            bottom: {
+                css: [],
+                js: []
+            }
+        };
+    }
+
+    /**
      * Iterates through each of the routes specified in routes.json and dispatches
      * those routes to the appController for handling.
      */
@@ -30,18 +48,20 @@ module.exports = function (app) {
         app.get(route, function (req, res) {
 
             // set up page embeds
-            res.locals.embeds = {
-                top: {
-                    css: [],
-                    js: []
-                },
-                bottom: {
-                    css: [],
-                    js: []
-                }
-            };
+            initializeEmbeds(res);
 
             appController(req, res, routes[route]);
         });
+    });
+
+    /**
+     * Error handler route. All pages not specified in the routes.json should
+     * fall into this route and display the error page.
+     */
+    app.get('*', function (req, res) {
+        console.log('Accessing unspecified route');
+
+        initializeEmbeds(res);
+        appController(req, res);
     });
 };
