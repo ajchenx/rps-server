@@ -41,8 +41,11 @@ You can run `jslint` on your code with the following command:
 The server handles simple routing via routes specified in `configs/routes.json`. The key of each first level object in the JSON file represents the route, and the value are the route options.
 
     "route": {
-        "controller": "..."
+        "controller": "...",
         "config": {
+            ...
+        },
+        "assets": {
             ...
         }
     }
