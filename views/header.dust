@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8' />
+    <title>RPS</title>
+
+    <link rel='stylesheet' href='css/app.css' />
+
+    {#embeds.top}
+      {#css}{~n}<link rel='stylesheet' type='text/css' href='{.|s}'/>{/css}
+      {#js}{~n}<script type='text/javascript' src='{.|s}'></script>{/js}
+      {#blob}{~n}{.|s}{/blob}
+    {/embeds.top}
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href='#' class='fast-trans selected'>Home</a>
+                </li>
+                <li>
+                    <a href='#' class='fast-trans'>About</a>
+                </li>
+                <li>
+                    <a href='#' class='fast-trans'>Tutorials</a>
+                </li>
+                <li>
+                    <a href='#' class='fast-trans'>Community</a>
+                </li>
+            </ul>
+        </nav>
+    </header>

@@ -1,0 +1,7 @@
+{>header /}
+
+<div class='main-content'>
+    {content|s}
+</div>
+
+{>footer /}

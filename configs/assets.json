@@ -1,0 +1,14 @@
+{
+    "css": [
+        {
+            "location": "top",
+            "value": "https://fonts.googleapis.com/css?family=Roboto:400,100,300,500"
+        }
+    ],
+    "js": [
+        {
+            "location": "top",
+            "value": "http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"
+        }
+    ]
+}

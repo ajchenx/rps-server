@@ -1,0 +1,21 @@
+{
+    "name": "rps-server",
+    "description": "Server for RPS Game",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "async": "0.2.*",
+        "consolidate": "0.9.x",
+        "express": "3.x",
+        "dustjs-linkedin": "2.2.x",
+        "lodash": "2.2.x",
+        "q": "0.9.x"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-compass": "0.6.x",
+        "grunt-contrib-watch": "0.5.x",
+        "grunt-jslint": "1.1.x",
+        "matchdep": "0.3.x"
+    }
+}
