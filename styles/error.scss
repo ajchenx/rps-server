@@ -1,0 +1,11 @@
+@import "imports/_globals";
+
+section {
+    margin: 0 auto;
+    width: $width-content;
+
+    & > h1 {
+        font-size: 100px;
+        margin-bottom: 0;
+    }
+}
