@@ -1,4 +1,4 @@
-/*jslint node:true, nomen:true*/
+/*jslint node:true, nomen:true, plusplus:true*/
 /*global Object*/
 
 'use strict';
@@ -6,7 +6,7 @@
 var path = require('path'),
     root = path.resolve(__dirname, '..'),
     appController = require(path.join(root, 'controllers/app.js')),
-    routes = require('./routes.json');
+    routesConfig = require('./routes.json');
 
 /**
  * Route handler for the specified application. This function will set up the
@@ -21,11 +21,11 @@ var path = require('path'),
  * @param {Object} app  the express application object
  */
 module.exports = function (app) {
+    var i, routes, route;
 
     /**
      * Initializes the embeds on the response object so that they can be passsed
      * to the views.
-     * @param {http.ServerResponse} res  the response object
      */
     function initializeEmbeds(res) {
         res.locals.embeds = {
@@ -43,18 +43,27 @@ module.exports = function (app) {
     }
 
     /**
+     * Route handler for routes specified in routes.json. This function will
+     * delegate the route to the app controller for processing.
+     */
+    function routeHandler(req, res) {
+        initializeEmbeds(res);
+        appController(req, res, routesConfig[route]);
+    }
+
+    /**
      * Iterates through each of the routes specified in routes.json and dispatches
      * those routes to the appController for handling.
+     * Object.keys + native for-loop offers better performance than for ... in
+     * loop and Array.forEach on Object.keys:
+     *      http://jsperf.com/for-in-versus-object-keys-foreach/6
      */
-    Object.keys(routes).forEach(function (route) {
-        app.get(route, function (req, res) {
+    routes = Object.keys(routesConfig);
+    for (i = 0; i < routes.length; ++i) {
+        route = routes[i];
 
-            // set up page embeds
-            initializeEmbeds(res);
-
-            appController(req, res, routes[route]);
-        });
-    });
+        app.get(route, routeHandler);
+    }
 
     /**
      * Error handler route. All pages not specified in the routes.json should
