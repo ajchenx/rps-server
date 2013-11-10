@@ -28,8 +28,15 @@ module.exports = function (req, res, config, next) {
         res.render('error');
     }
 
+    /**
+     * Adds the specified files to be loaded to the response object so that
+     * they are visible to the view.
+     * @param {Object} embeds  the locals.embeds object on the response
+     * @param {Array} files    the files to load onto the page
+     * @param {String} type    (css|js|blob) the type of the file to load
+     */
     function loadAsset(embeds, files, type) {
-        var i, file, location, value, embed;
+        var i, file, location, value;
 
         // ensure that the type (e.g. css) is an accepted type
         if (acceptedAssetTypes.indexOf(type) === -1) {
