@@ -4,7 +4,6 @@
 
 var path = require('path'),
     async = require('async'),
-    _ = require('lodash'),
     root = path.resolve(__dirname, '..'),
     assetsConfig = require(path.resolve(root, 'configs/assets.json')),
     controllers = {
@@ -29,28 +28,52 @@ module.exports = function (req, res, config, next) {
     }
 
     /**
-     * Adds the specified files to be loaded to the response object so that
-     * they are visible to the view.
+     * Adds the files in the specified config to be loaded to the response object
+     * so that they are visible to the view. The asset config should have a
+     * structure as follows:
+     * @example
+     *      "assets": {
+     *           "css": [
+     *               ...
+     *           ],
+     *           "js": [
+     *               ...
+     *           ],
+     *           "blob": [
+     *               ...
+     *           ],
+     *       }
      * @param {Object} embeds  the locals.embeds object on the response
-     * @param {Array} files    the files to load onto the page
-     * @param {String} type    (css|js|blob) the type of the file to load
+     * @param {Object} config  the asset config that specifies the assets to load
      */
-    function loadAsset(embeds, files, type) {
-        var i, file, location, value;
+    function loadAsset(embeds, config) {
+        var i, types, type, files, file, location, value;
 
-        // ensure that the type (e.g. css) is an accepted type
-        if (acceptedAssetTypes.indexOf(type) === -1) {
+        if (!embeds || !config) {
             return;
         }
 
-        // load each asset to its specified location ("top" or "bottom")
-        for (i = 0; i < files.length; ++i) {
-            file = files[i];
-            location = file.location;
-            value = file.value;
+        types = Object.keys(config);
 
-            if (typeof location === 'string' && typeof value === 'string') {
-                embeds[location][type].push(value);
+        // traverse all the asset types listed in the asset config
+        for (i = 0; i < types.length; ++i) {
+            type = types[i];
+            files = config[type];
+
+            // ensure that the type (e.g. css) is an accepted type
+            if (acceptedAssetTypes.indexOf(type) === -1) {
+                return;
+            }
+
+            // load each asset to its specified location ("top" or "bottom")
+            for (i = 0; i < files.length; ++i) {
+                file = files[i];
+                location = file.location;
+                value = file.value;
+
+                if (typeof location === 'string' && typeof value === 'string') {
+                    embeds[location][type].push(value);
+                }
             }
         }
     }
@@ -66,17 +89,11 @@ module.exports = function (req, res, config, next) {
             var embeds = res.locals.embeds,
                 controllerAssets = config.assets;
 
-            // traverse and load assets from assets.json
-            _.forEach(assetsConfig, function (files, type) {
-                loadAsset(embeds, files, type);
-            });
+            // load assets from assets.json
+            loadAsset(embeds, assetsConfig);
 
             // load any assets required by the controller
-            if (controllerAssets) {
-                _.forEach(controllerAssets, function (files, type) {
-                    loadAsset(embeds, files, type);
-                });
-            }
+            loadAsset(embeds, controllerAssets);
 
             callback();
         },
