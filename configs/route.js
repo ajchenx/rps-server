@@ -21,7 +21,7 @@ var path = require('path'),
  * @param {Object} app  the express application object
  */
 module.exports = function (app) {
-    var i, routes, route;
+    var i, routes;
 
     /**
      * Initializes the embeds on the response object so that they can be passsed
@@ -43,12 +43,14 @@ module.exports = function (app) {
     }
 
     /**
-     * Route handler for routes specified in routes.json. This function will
-     * delegate the route to the app controller for processing.
+     * Delegate the specified route to the app controller for processing.
+     * @param {String} route  the route to process
      */
-    function routeHandler(req, res) {
-        initializeEmbeds(res);
-        appController(req, res, routesConfig[route]);
+    function delegateRoute(route) {
+        app.get(route, function (req, res) {
+            initializeEmbeds(res);
+            appController(req, res, routesConfig[route]);
+        });
     }
 
     /**
@@ -60,9 +62,7 @@ module.exports = function (app) {
      */
     routes = Object.keys(routesConfig);
     for (i = 0; i < routes.length; ++i) {
-        route = routes[i];
-
-        app.get(route, routeHandler);
+        delegateRoute(routes[i]);
     }
 
     /**
