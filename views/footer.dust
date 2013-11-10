@@ -1,2 +1,8 @@
+    {#embeds.bottom}
+      {#css}{~n}<link rel='stylesheet' type='text/css' href='{.|s}'/>{/css}
+      {#js}{~n}<script type='text/javascript' src='{.|s}'></script>{/js}
+      {#blob}{~n}{.|s}{/blob}
+    {/embeds.bottom}
+
 </body>
 </html>
