@@ -1,0 +1,29 @@
+@import "../imports/globals";
+
+.hero-carousel {
+    background: url(../../img/colors.png);
+    background-repeat: no-repeat;
+    background-position: 50% 15%;
+    background-size: cover;
+    height: 400px;
+    text-align: center;
+
+    & > div {
+        margin: 0 auto;
+        position: relative;
+        width: $width-content;
+        height: 100%;
+
+        .overlay {
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+            width: 500px;
+        }
+    }
+}
+
+.hero-content {
+    margin: 20px auto 0;
+    width: $width-content;
+}
