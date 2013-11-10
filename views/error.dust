@@ -1,5 +1,8 @@
 {>header /}
 
-<p>Something went wrong!</p>
+<section>
+    <h1 class='fw-thin'>404</h1>
+    <p class='fz-xl'>Something went wrong!</p>
+</section>
 
 {>footer /}
