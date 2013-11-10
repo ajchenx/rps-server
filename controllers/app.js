@@ -17,6 +17,7 @@ var path = require('path'),
     ];
 
 module.exports = function (req, res, config, next) {
+    config = config || {};
 
     /**
      * Handles a rendering failure. This function will send the error page back
@@ -24,6 +25,26 @@ module.exports = function (req, res, config, next) {
      */
     function handleRenderError() {
         res.render('error');
+    }
+
+    function loadAsset(embeds, files, type) {
+        var i, file, location, value;
+
+        // ensure that the type (e.g. css) is an accepted type
+        if (acceptedAssetTypes.indexOf(type) === -1) {
+            return;
+        }
+
+        // load each asset to its specified location ("top" or "bottom")
+        for (i = 0; i < files.length; ++i) {
+            file = files[i];
+            location = file.location;
+            value = file.value;
+
+            if (typeof location === 'string' && typeof value === 'string') {
+                embeds[location][type] = value;
+            }
+        }
     }
 
     async.auto({
@@ -34,28 +55,20 @@ module.exports = function (req, res, config, next) {
          * @param {Function} callback  callback to be called when this function completes
          */
         assets: function (callback) {
-            var embeds = res.locals.embeds;
+            var embeds = res.locals.embeds,
+                controllerAssets = config.assets;
 
             // traverse and load assets from assets.json
             _.forEach(assetsConfig, function (files, type) {
-                var i, file, location, value;
-
-                // ensure that the type (e.g. css) is an accepted type
-                if (acceptedAssetTypes.indexOf(type) === -1) {
-                    return;
-                }
-
-                // load each asset to its specified location ("top" or "bottom")
-                for (i = 0; i < files.length; ++i) {
-                    file = files[i];
-                    location = file.location;
-                    value = file.value;
-
-                    if (typeof location === 'string' && typeof value === 'string') {
-                        embeds[location][type] = value;
-                    }
-                }
+                loadAsset(embeds, files, type);
             });
+
+            // load any assets required by the controller
+            if (controllerAssets) {
+                _.forEach(controllerAssets, function (files, type) {
+                    loadAsset(embeds, files, type);
+                });
+            }
 
             callback();
         },
@@ -67,7 +80,7 @@ module.exports = function (req, res, config, next) {
          * @param {Function} callback  callback to be called when this function completes
          */
         renderApp: ['assets', function (callback) {
-            var controller = config && config.controller && controllers[config.controller],
+            var controller = config.controller && controllers[config.controller],
                 data = {};
 
             if (controller) {
