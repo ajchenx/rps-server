@@ -10,7 +10,7 @@ You will need grunt to be installed globally
 
 ### Install Compass
 
-Compass is being used to compile [SASS][http://sass-lang.com]:
+Compass is being used to compile [SASS](http://sass-lang.com):
 
     http://compass-style.org/install/
 
@@ -30,7 +30,7 @@ You can run the tasks under `grunt watch` manually with the following command:
 
 ### Code Quality
 
-Javascript files should pass [jslint][http://www.jslint.com], though this is not enforced.
+Javascript files should pass [jslint](http://www.jslint.com), though this is not enforced.
 
 You can run `jslint` on your code with the following command:
 
@@ -51,7 +51,7 @@ The server handles simple routing via routes specified in `configs/routes.json`.
 
 The name specified as the `controller` corresponds to the its matching file in the `controllers` directory. Each controller will receive the `req` and `res` object as well as the `config` that is specified in `routes.json`.
 
-The controller is responsible for returning its associated markup. The expected way for the controller to do this is via [promises][http://promises-aplus.github.io/promises-spec/]. This server utilizes Kris Kowal's [Q][https://github.com/kriskowal/q] package to achieve this functionality. Below is an example of how to accomplish this:
+The controller is responsible for returning its associated markup. The expected way for the controller to do this is via [promises](http://promises-aplus.github.io/promises-spec/). This server utilizes Kris Kowal's [Q](https://github.com/kriskowal/q) package to achieve this functionality. Below is an example of how to accomplish this:
 
     var q = require('q');
     
@@ -71,4 +71,4 @@ The controller is responsible for returning its associated markup. The expected 
 
 ### Views
 
-LinkedIn's fork of [Dust.js][https://github.com/linkedin/dustjs] is used as the rendering engine.
+LinkedIn's fork of [Dust.js](https://github.com/linkedin/dustjs) is used as the rendering engine.
