@@ -31,11 +31,13 @@ module.exports = function (app) {
         res.locals.embeds = {
             top: {
                 css: [],
-                js: []
+                js: [],
+                blob: []
             },
             bottom: {
                 css: [],
-                js: []
+                js: [],
+                blob: []
             }
         };
     }
