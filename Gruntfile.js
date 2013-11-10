@@ -19,7 +19,8 @@ module.exports = function (grunt) {
                 src: [
                     'app.js',
                     'lib/*.js',
-                    'configs/**/*.js'
+                    'configs/**/*.js',
+                    'controllers/**/*.js'
                 ],
                 directives: {
                     node: true,
