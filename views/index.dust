@@ -1,1 +1,24 @@
-<h1>RPS</h1>
+<section class='hero-carousel w-100'>
+    <div>
+        <div class='overlay'>
+            <h1 class='fz-4xl'>Rock. Paper. Scissors.</h1>
+            <p class='fz-l'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut lacinia nulla.</p>
+            <button class='btn fz-l'>Play Now</button>
+        </div>
+    </div>
+</section>
+
+<section class='hero-content'>
+    <div class='grid-u-1-3'>
+        <h2>Lorem Ipsum Dolor</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer interdum vel urna in volutpat. Donec vel dapibus justo, sed pretium urna. Vestibulum eu urna eu neque euismod congue.</p>
+    </div>
+    <div class='grid-u-1-3'>
+        <h2>Phasellus Dolor Purus</h2>
+        <p>Phasellus dolor purus, cursus quis erat vitae, laoreet rutrum lacus. Maecenas blandit venenatis porttitor. Nam vehicula, quam eu tincidunt luctus, diam mi adipiscing metus, pharetra dignissim odio erat ut diam.</p>
+    </div>
+    <div class='grid-u-1-3'>
+        <h2>Suspendisse Luctus Nec</h2>
+        <p>Cras congue mollis velit et cursus. Fusce sed eros euismod, rutrum ipsum non, mollis mi. Nulla nisl arcu, dignissim ac tellus non, mattis ullamcorper nibh.</p>
+    </div>
+</section>
