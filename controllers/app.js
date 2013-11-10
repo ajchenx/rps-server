@@ -24,11 +24,12 @@ module.exports = function (req, res, config, next) {
      * to the user.
      */
     function handleRenderError() {
+        res.locals.embeds.top.css.push('css/error.css');
         res.render('error');
     }
 
     function loadAsset(embeds, files, type) {
-        var i, file, location, value;
+        var i, file, location, value, embed;
 
         // ensure that the type (e.g. css) is an accepted type
         if (acceptedAssetTypes.indexOf(type) === -1) {
@@ -42,7 +43,7 @@ module.exports = function (req, res, config, next) {
             value = file.value;
 
             if (typeof location === 'string' && typeof value === 'string') {
-                embeds[location][type] = value;
+                embeds[location][type].push(value);
             }
         }
     }
