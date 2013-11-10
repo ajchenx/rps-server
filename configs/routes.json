@@ -1,5 +1,13 @@
 {
     "/": {
-        "controller": "index"
+        "controller": "index",
+        "assets": {
+            "css": [
+                {
+                    "location": "top",
+                    "value": "css/page/index.css"
+                }
+            ]
+        }
     }
 }
