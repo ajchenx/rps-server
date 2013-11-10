@@ -10,9 +10,7 @@ You will need grunt to be installed globally
 
 ### Install Compass
 
-Compass is being used to compile [SASS](http://sass-lang.com):
-
-    http://compass-style.org/install/
+[Compass](http://compass-style.org/install/) is being used to compile [Sass](http://sass-lang.com).
 
 ### Build Tasks
 
