@@ -12,6 +12,8 @@ The server handles simple routing via routes specified in `configs/routes.json`.
         }
     }
 
+Routes that are not specified in `routes.json` will be shown the 404 error page.
+
 ## Assets
 A controller can specify the assets that it wants to load via an `assets` object. The `assets` object has three valid types of assets to load: [`css`, `js`, `blob`]. Each type is an array of files to load. The file is an object that has a `location` and `value`, which represent the location to place the file (`top` or `bottom`) and file name respectively.
 
