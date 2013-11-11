@@ -1,4 +1,5 @@
-/*jslint node:true*/
+/*jslint node:true, unparam:true*/
+// req is ununsed but required by controller signature
 
 'use strict';
 
@@ -9,7 +10,9 @@ module.exports = function (req, res) {
 
     res.render('index', {}, function (err, markup) {
         if (err) {
-            deferred.reject();
+            deferred.reject({
+                message: 'rendering failure'
+            });
         }
 
         deferred.resolve(markup);
