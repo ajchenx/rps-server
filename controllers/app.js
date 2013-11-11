@@ -19,15 +19,6 @@ module.exports = function (req, res, config, next) {
     config = config || {};
 
     /**
-     * Handles a rendering failure. This function will send the error page back
-     * to the user.
-     */
-    function handleRenderError() {
-        res.locals.embeds.top.css.push('css/error.css');
-        res.render('error');
-    }
-
-    /**
      * Adds the files in the specified config to be loaded to the response object
      * so that they are visible to the view. The asset config should have a
      * structure as follows:
@@ -105,21 +96,29 @@ module.exports = function (req, res, config, next) {
          * @param {Function} callback  callback to be called when this function completes
          */
         renderApp: ['assets', function (callback) {
-            var controller = config.controller && controllers[config.controller],
-                data = {};
+            var controller, data = {},
+                error = config.error;
 
-            if (controller) {
-                controller(req, res, config.config).then(function (markup) {
-                    data.content = markup;
-
-                    res.render('app', data);
-                }, handleRenderError);
+            // if route delegation passed us an error, then call the error middleware
+            if (error) {
+                next(error);
             } else {
-                console.log('No controller specified for route');
-                handleRenderError();
+                controller = config.controller && controllers[config.controller];
+
+                if (controller) {
+                    controller(req, res, config.config).then(function (markup) {
+                        data.content = markup;
+
+                        res.render('app', data);
+                    }, next);
+                } else {
+                    next({
+                        message: 'No controller specified for route'
+                    });
+                }
             }
 
             callback();
         }]
-    }, next);
+    });
 };
