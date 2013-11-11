@@ -24,32 +24,13 @@ module.exports = function (app) {
     var i, routes;
 
     /**
-     * Initializes the embeds on the response object so that they can be passsed
-     * to the views.
-     */
-    function initializeEmbeds(res) {
-        res.locals.embeds = {
-            top: {
-                css: [],
-                js: [],
-                blob: []
-            },
-            bottom: {
-                css: [],
-                js: [],
-                blob: []
-            }
-        };
-    }
-
-    /**
      * Delegate the specified route to the app controller for processing.
      * @param {String} route  the route to process
      */
     function delegateRoute(route) {
-        app.get(route, function (req, res) {
-            initializeEmbeds(res);
-            appController(req, res, routesConfig[route]);
+        console.log('delegating route!');
+        app.get(route, function (req, res, next) {
+            appController(req, res, routesConfig[route], next);
         });
     }
 
@@ -67,12 +48,12 @@ module.exports = function (app) {
 
     /**
      * Error handler route. All pages not specified in the routes.json should
-     * fall into this route and display the error page.
+     * fall into this route. This function passes an error object with an
+     * accompanying error message to the app controller for rendering.
      */
-    app.get('*', function (req, res) {
-        console.log('Accessing unspecified route');
-
-        initializeEmbeds(res);
-        appController(req, res);
+    app.get('*', function (req, res, next) {
+        appController(req, res, {
+            error: 'Accessing unspecified route'
+        }, next);
     });
 };
