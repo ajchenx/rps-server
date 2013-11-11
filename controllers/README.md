@@ -11,7 +11,9 @@ The controller is responsible for returning its associated markup. The expected 
     
         res.render('view', {}, function (err, markup) {
             if (err) {
-                deferred.reject();
+                deferred.reject({
+                    message: 'Rendering failure'
+                });
             }
     
             deferred.resolve(markup);
