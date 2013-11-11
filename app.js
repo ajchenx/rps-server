@@ -7,6 +7,8 @@ var express = require('express'),
     path = require('path'),
     cons = require('consolidate'),
     root = path.resolve(__dirname),
+    error = require(path.resolve(root, 'lib/middleware/error.js')),
+    embeds = require(path.resolve(root, 'lib/middleware/embeds.js')),
     app = express(),
     server;
 
@@ -20,9 +22,13 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(root, 'public')));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(embeds);
 
 // set up application routes
 require(path.join(root, 'configs/route.js'))(app);
+
+// error handling middleware
+app.use(error);
 
 server = http.createServer(app);
 
