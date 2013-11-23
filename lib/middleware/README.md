@@ -10,6 +10,8 @@ This middleware is responsible for initializing the `embeds` object on the `resp
 
 Error handling middleware. This middleware is intended to be used after all routes and middleware have been declared. Calling `next(err)` with `err` being an error object will invoke this middleware. If the `err` object has a message, this message will be logged.
 
-    err = {
-        message: 'Error message'
-    }
+```javascript
+err = {
+    message: 'Error message'
+}
+```
