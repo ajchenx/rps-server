@@ -24,7 +24,7 @@ Running `grunt watch` will run in the background and monitor:
 
 You can run the tasks under `grunt watch` manually with the following command:
 
-`grunt compass`
+    grunt compass
 
 ### Code Quality
 
@@ -32,7 +32,7 @@ Javascript files should pass [jslint](http://www.jslint.com), though this is not
 
 You can run `jslint` on your code with the following command:
 
-`grunt jslint`
+    grunt jslint
 
 ## Routing Component
 
