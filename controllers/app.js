@@ -6,6 +6,7 @@ var path = require('path'),
     async = require('async'),
     root = path.resolve(__dirname, '..'),
     assetsConfig = require(path.resolve(root, 'configs/assets.json')),
+    navConfig = require(path.resolve(root, 'configs/nav.json')),
     controllers = {
         index: require(path.resolve(root, 'controllers/index.js'))
     },
@@ -37,7 +38,7 @@ module.exports = function (req, res, config, next) {
      * @param {Object} embeds  the locals.embeds object on the response
      * @param {Object} config  the asset config that specifies the assets to load
      */
-    function loadAsset(embeds, config) {
+    function loadAssets(embeds, config) {
         var i, j, types, type, files, file, location, value;
 
         if (!embeds || !config) {
@@ -81,10 +82,54 @@ module.exports = function (req, res, config, next) {
                 controllerAssets = config.assets;
 
             // load assets from assets.json
-            loadAsset(embeds, assetsConfig);
+            loadAssets(embeds, assetsConfig);
 
             // load any assets required by the controller
-            loadAsset(embeds, controllerAssets);
+            loadAssets(embeds, controllerAssets);
+
+            callback();
+        },
+
+        /**
+         * Initializes the nav items in the nav.json config. Nav items are
+         * loaded onto the page in the order they are listed in the config and
+         * are shown if the "enabled" flag is set to true.
+         * @example
+         *      "navItem": {
+         *          "enabled": true
+         *       },
+         *       "navItem2": {
+         *          "enabled": false
+         *       }
+         * @param {Function} callback  callback to be called when this function completes
+         */
+        loadNav: function (callback) {
+            var i, navItem, nav, title,
+                controllerNavEntry = config.nav,
+                selected = false,
+                embeds = res.locals.embeds;
+
+            if (Array.isArray(navConfig)) {
+                nav = embeds.nav = [];
+
+                // iterate through each nav item specified in the config and add
+                // it if it is enabled
+                for (i = 0; i < navConfig.length; ++i) {
+                    navItem = navConfig[i];
+
+                    if (navItem.enabled && navItem.title) {
+                        title = navItem.title;
+
+                        // determine if the current nav item is 'selected' by the controller
+                        selected = (controllerNavEntry === (navItem.id || title));
+
+                        nav.push({
+                            title: title,
+                            selected: selected
+                        });
+                    }
+                }
+            }
 
             callback();
         },
@@ -95,7 +140,7 @@ module.exports = function (req, res, config, next) {
          * function be run first.
          * @param {Function} callback  callback to be called when this function completes
          */
-        renderApp: ['assets', function (callback) {
+        renderApp: ['assets', 'loadNav', function (callback) {
             var controller, data = {},
                 error = config.error;
 
@@ -108,7 +153,6 @@ module.exports = function (req, res, config, next) {
                 if (controller) {
                     controller(req, res, config.config).then(function (markup) {
                         data.content = markup;
-
                         res.render('app', data);
                     }, next);
                 } else {
