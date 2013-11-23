@@ -5,8 +5,8 @@
 
 var path = require('path'),
     root = path.resolve(__dirname, '..'),
-    appController = require(path.join(root, 'controllers/app.js')),
-    routesConfig = require('./routes.json');
+    appController = require('./app.js'),
+    routesConfig = require(path.join(root, 'configs/routes.json'));
 
 /**
  * Route handler for the specified application. This function will set up the
