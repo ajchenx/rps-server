@@ -25,7 +25,7 @@ app.use(express.urlencoded());
 app.use(embeds);
 
 // set up application routes
-require(path.join(root, 'configs/route.js'))(app);
+require(path.join(root, 'controllers/route.js'))(app);
 
 // error handling middleware
 app.use(error);
