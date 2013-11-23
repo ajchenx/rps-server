@@ -1,0 +1,13 @@
+{?embeds.nav}
+<header>
+    <nav>
+        <ul>
+            {#embeds.nav}
+            <li>
+                <a href='#' class='fast-trans{?selected} selected{/selected}'>{title}</a>
+            </li>
+            {/embeds.nav}
+        </ul>
+    </nav>
+</header>
+{/embeds.nav}
