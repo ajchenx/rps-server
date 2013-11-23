@@ -12,21 +12,4 @@
 </head>
 <body>
 
-    <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href='#' class='fast-trans selected'>Home</a>
-                </li>
-                <li>
-                    <a href='#' class='fast-trans'>About</a>
-                </li>
-                <li>
-                    <a href='#' class='fast-trans'>Tutorials</a>
-                </li>
-                <li>
-                    <a href='#' class='fast-trans'>Community</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    {>nav /}
