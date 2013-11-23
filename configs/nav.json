@@ -1,0 +1,22 @@
+[
+    {
+        "id": "home",
+        "enabled": true,
+        "title": "Home"
+    },
+    {
+        "id": "about",
+        "enabled": true,
+        "title": "About"
+    },
+    {
+        "id": "tutorial",
+        "enabled": true,
+        "title": "Tutorials"
+    },
+    {
+        "id": "community",
+        "enabled": true,
+        "title": "Community"
+    }
+]
