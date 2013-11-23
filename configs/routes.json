@@ -8,6 +8,7 @@
                     "value": "css/page/index.css"
                 }
             ]
-        }
+        },
+        "nav": "home"
     }
 }
