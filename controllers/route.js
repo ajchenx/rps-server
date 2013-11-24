@@ -53,7 +53,9 @@ module.exports = function (app) {
      */
     app.get('*', function (req, res, next) {
         appController(req, res, {
-            message: 'Accessing unspecified route'
+            error: {
+                message: 'Accessing unspecified route'
+            }
         }, next);
     });
 };
