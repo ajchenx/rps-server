@@ -1,4 +1,4 @@
-/*jslint node:true, nomen:true, plusplus:true*/
+/*jslint node:true, nomen:true, plusplus:true, continue:true*/
 
 'use strict';
 
@@ -54,7 +54,7 @@ module.exports = function (req, res, config, next) {
 
             // ensure that the type (e.g. css) is an accepted type
             if (acceptedAssetTypes.indexOf(type) === -1) {
-                return;
+                continue;
             }
 
             // load each asset to its specified location ("top" or "bottom")
