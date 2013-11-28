@@ -39,27 +39,24 @@ module.exports = function (req, res, config, next) {
      * @param {Object} config  the asset config that specifies the assets to load
      */
     function loadAssets(embeds, config) {
-        var i, j, types, type, files, file, location, value;
+        var i, files, file, location, value;
 
         if (!embeds || !config) {
             return;
         }
 
-        types = Object.keys(config);
-
         // traverse all the asset types listed in the asset config
-        for (i = 0; i < types.length; ++i) {
-            type = types[i];
+        Object.keys(config).forEach(function (type) {
             files = config[type];
 
             // ensure that the type (e.g. css) is an accepted type
             if (acceptedAssetTypes.indexOf(type) === -1) {
-                continue;
+                return;
             }
 
             // load each asset to its specified location ("top" or "bottom")
-            for (j = 0; j < files.length; ++j) {
-                file = files[j];
+            for (i = 0; i < files.length; ++i) {
+                file = files[i];
                 location = file.location;
                 value = file.value;
 
@@ -67,7 +64,7 @@ module.exports = function (req, res, config, next) {
                     embeds[location][type].push(value);
                 }
             }
-        }
+        });
     }
 
     async.auto({
