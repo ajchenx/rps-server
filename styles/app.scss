@@ -45,26 +45,26 @@ header {
             margin: 0;
             padding: 0;
             text-align: right;
+        }
 
-            li {
-                font-size: 15px;
-                display: inline-block;
-                margin-right: 20px;
+        li {
+            font-size: 15px;
+            display: inline-block;
+            margin-right: 20px;
+        }
 
-                a {
-                    color: #999;
-                    font-weight: 300;
-                    text-decoration: none;
+        a {
+            color: #999;
+            font-weight: 300;
+            text-decoration: none;
 
-                    &:hover {
-                        color: black;
-                    }
+            &:hover {
+                color: black;
+            }
 
-                    &.selected {
-                        color: black;
-                        font-weight: 400;
-                    }
-                }
+            &.selected {
+                color: black;
+                font-weight: 400;
             }
         }
     }
