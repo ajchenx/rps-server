@@ -21,7 +21,6 @@ var path = require('path'),
  * @param {Object} app  the express application object
  */
 module.exports = function (app) {
-    var i, routes;
 
     /**
      * Delegate the specified route to the app controller for processing.
@@ -41,10 +40,9 @@ module.exports = function (app) {
      * loop and Array.forEach on Object.keys:
      *      http://jsperf.com/for-in-versus-object-keys-foreach/6
      */
-    routes = Object.keys(routesConfig);
-    for (i = 0; i < routes.length; ++i) {
-        delegateRoute(routes[i]);
-    }
+    Object.keys(routesConfig).forEach(function (route) {
+        delegateRoute(route);
+    });
 
     /**
      * Error handler route. All pages not specified in the routes.json should
