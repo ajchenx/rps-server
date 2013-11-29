@@ -4,7 +4,7 @@
         <ul>
             {#embeds.nav}
             <li>
-                <a href='#' class='fast-trans{?selected} selected{/selected}'>{title}</a>
+                <a href='{url}' class='fast-trans{?selected} selected{/selected}'>{title}</a>
             </li>
             {/embeds.nav}
         </ul>
