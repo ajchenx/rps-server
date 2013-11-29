@@ -5,7 +5,7 @@
             "css": [
                 {
                     "location": "top",
-                    "value": "css/page/index.css"
+                    "value": "/css/page/index.css"
                 }
             ]
         },
