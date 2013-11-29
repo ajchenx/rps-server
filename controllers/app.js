@@ -122,7 +122,8 @@ module.exports = function (req, res, config, next) {
 
                         nav.push({
                             title: title,
-                            selected: selected
+                            selected: selected,
+                            url: navItem.url || '#'
                         });
                     }
                 }
