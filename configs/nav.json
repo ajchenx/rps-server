@@ -2,21 +2,25 @@
     {
         "id": "home",
         "enabled": true,
-        "title": "Home"
+        "title": "Home",
+        "url": "/"
     },
     {
         "id": "about",
         "enabled": true,
-        "title": "About"
+        "title": "About",
+        "url": "/about/"
     },
     {
         "id": "tutorial",
         "enabled": true,
-        "title": "Tutorials"
+        "title": "Tutorials",
+        "url": "/tutorials/"
     },
     {
         "id": "community",
         "enabled": true,
-        "title": "Community"
+        "title": "Community",
+        "url": "/community/"
     }
 ]
