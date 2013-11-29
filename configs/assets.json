@@ -6,7 +6,7 @@
         },
         {
             "location": "top",
-            "value": "css/app.css"
+            "value": "/css/app.css"
         }
     ],
     "js": [
