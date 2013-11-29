@@ -25,11 +25,11 @@ A controller can specify the assets that it wants to load via an `assets` object
 "assets": {
     "css": [
         "location": "top",
-        "value": "css/style.css"
+        "value": "/css/style.css"
     ],
     "js": [
         "location": "bottom",
-        "value": "js/file.js"
+        "value": "/js/file.js"
     ],
     "blob": [
         "location": "top",
@@ -47,12 +47,14 @@ There is a navigation bar that spans the top of the page. The entries for this n
     {
         "id": "home",
         "enabled": true,
-        "title": "Home"
+        "title": "Home",
+        "url": "/"
     },
     {
         "id": "about",
         "enabled": true,
-        "title": "About"
+        "title": "About",
+        "url": "/about/"
     }
     ...
 ]
